@@ -6,13 +6,20 @@ import clr
 clr.AddReference('System')
 clr.AddReference("System.Drawing")
 clr.AddReference("System.Windows.Forms")
-# clr.AddReference("System.Threading")
-#clr.AddReference("System.Timers")
+clr.AddReference("System.Threading")
+# clr.AddReference("System.Timers")
 from System import *
 from System.Drawing import Point,Size,Color
 from System.Windows.Forms import DialogResult, GroupBox, FormBorderStyle,MessageBox
 from System.Windows.Forms import Application, Form, Button, Label,TextBox,ComboBox, TabControl,TabPage,Panel,BorderStyle
 from System.Diagnostics import Process
+from System.Threading import *
+# from System.Timers import *
+from System.Threading.Tasks import Task
+
+# from threading import Timer
+from time import sleep
+
 # from System.Threading import Threading
 #from System.Timers import Timers
 
@@ -503,7 +510,8 @@ class MyForm(Form):
             result = ConnectFuncCallTCP(ip)
             self.BtnMultimeter.Text = result #"해제"
             # self.timer.cancel()
-            MessageBox.Show("200: Timer Start: OK" + result)
+            self.timer.cancel() 
+            MessageBox.Show("200-1: Timer Start: OK" + result)
         except :
             result="\nno call function error"
         return result
@@ -517,10 +525,10 @@ class MyForm(Form):
         MessageBox.Show("Hello World:" + result)
         # 값이 == 200 이면 타이머 동작하여 값을 갱신한다. self.BtnMultimeter.Text
         if "200" == result :
-            MessageBox.Show("200: Timer Start:" + result) #시간 지연시킴 => 타이머 사용해야 할듯
-            self.my_func("")
-            # self.timer = threading.Timer(3,self.my_func("")) #.start()
-            # self.timer.start()
+            # MessageBox.Show("200: Timer Start:" + result) #시간 지연시킴 => 타이머 사용해야 할듯
+            # self.my_func("")
+            self.timer = Timer(5,self.my_func("")) #.start()
+            self.timer.start()
         else:
             length = len(result)
             if 20 >= length  and length > 0 :
