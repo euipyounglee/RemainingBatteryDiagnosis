@@ -1,7 +1,0 @@
-{
-    "port" : 5050,
-    "preview":true,
-    "webbrowser":"BPDiagnosis.exe",
-    "webserver" : "battery_diagnosisSrv.exe",
-    "CreateConsle":true
-}
